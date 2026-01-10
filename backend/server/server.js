@@ -5,8 +5,8 @@ const session = require("express-session");
 const sqliteStore = require("connect-sqlite3")(session);
 const path = require("path");
 
-const authRoutes = require("./src/routes/authRoutes");
-const noteRoutes = require("./src/routes/noteRoutes");
+const authRoutes = require("../src/routes/authRoutes");
+const noteRoutes = require("../src/routes/noteRoutes");
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -26,7 +26,7 @@ app.use(express.json());
 app.use(session({
   store: new sqliteStore({
     db: "sessions.db",
-    dir: path.join(__dirname, "src/database")
+    dir: path.join(__dirname, "../src/database")
   }),
   secret: process.env.SESSION_SECRET || "session_secret_key",
   resave: false,
